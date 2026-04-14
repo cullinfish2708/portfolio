@@ -109,7 +109,7 @@ elif page == "Resume":
     st.markdown("### 👀 Preview")
 
     st.markdown("""
-    <iframe src="https://drive.google.com/file/d/1AL6rUctnZFNkDEqaxY32645LU8kAS26V/view?usp=drive_link" 
+    <iframe src="https://drive.google.com/file/d/1AL6rUctnZFNkDEqaxY32645LU8kAS26V/preview" 
     width="100%" height="700px"></iframe>
     """, unsafe_allow_html=True)
 
