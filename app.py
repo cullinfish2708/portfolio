@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 import base64
 import streamlit.components.v1 as components
 
@@ -99,8 +100,6 @@ elif page == "Projects":
         )
         st.markdown("Tools Used: ESP32 / Arduino, Soil Moisture Sensor, DHT Sensor, IoT Platforms, Wi-Fi")
 
-import os
-import base64
 
 elif page == "Resume":
     st.header("📄 Resume")
