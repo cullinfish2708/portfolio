@@ -99,28 +99,42 @@ elif page == "Projects":
         )
         st.markdown("Tools Used: ESP32 / Arduino, Soil Moisture Sensor, DHT Sensor, IoT Platforms, Wi-Fi")
 
+import os
+import base64
+
 elif page == "Resume":
     st.header("📄 Resume")
 
-    with open("resume.pdf", "rb") as pdf_file:
-        pdf_bytes = pdf_file.read()
-        base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
+    if os.path.exists("resume.pdf"):
+        with open("resume.pdf", "rb") as pdf_file:
+            pdf_bytes = pdf_file.read()
 
-    st.download_button(
-        label="⬇️ Download Resume",
-        data=pdf_bytes,
-        file_name="AJ_Resume.pdf",
-        mime="application/pdf"
-    )
+        # Download button
+        st.download_button(
+            label="⬇️ Download Resume",
+            data=pdf_bytes,
+            file_name="AJ_Resume.pdf",
+            mime="application/pdf"
+        )
 
-    st.markdown("### 👀 Preview")
+        st.info("Preview may not load on all browsers. Use download if needed.")
 
-    pdf_display = f"""
-    <iframe src="data:application/pdf;base64,{base64_pdf}" 
-    width="100%" height="700px" style="border:none;"></iframe>
-    """
+        # Try preview
+        try:
+            base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
 
-    st.markdown(pdf_display, unsafe_allow_html=True)
+            pdf_display = f"""
+            <iframe src="data:application/pdf;base64,{base64_pdf}" 
+            width="100%" height="700px"></iframe>
+            """
+
+            st.markdown(pdf_display, unsafe_allow_html=True)
+
+        except:
+            st.warning("Preview not supported. Please download the resume.")
+
+    else:
+        st.error("Resume file not found.")
 
 elif page == "Contact":
     st.header("Contact:")
